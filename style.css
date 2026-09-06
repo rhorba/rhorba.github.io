@@ -1,0 +1,135 @@
+:root{
+  --encre:#131e27;
+  --papier:#edf0f2;
+  --legacy:#9a5b12;
+  --cible:#0e5a4c;
+  --trait:#c4cfd6;
+  --doux:#54646f;
+  --encre-clair:#e8edf0;
+  --legacy-clair:#d99a41;
+  --cible-clair:#54c1a7;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--papier);color:var(--encre);
+  font-family:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  font-size:17px;line-height:1.62;
+  font-feature-settings:"kern" 1;
+}
+h1,h2,h3,.slab{font-family:"Zilla Slab",Georgia,serif;font-weight:600;letter-spacing:-.005em}
+a{color:var(--cible);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{text-decoration-thickness:2px}
+a:focus-visible{outline:2px solid var(--cible);outline-offset:3px;border-radius:2px}
+.wrap{max-width:980px;margin:0 auto;padding:0 26px}
+.prose{max-width:64ch}
+
+/* ---------- bandeau haut ---------- */
+.hero{background:var(--encre);color:var(--encre-clair);padding:24px 0 50px}
+.ident{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline;
+  padding-bottom:30px;font-size:14.5px;color:#93a7b3}
+.ident b{font-family:"Zilla Slab",Georgia,serif;font-size:17.5px;font-weight:600;color:var(--encre-clair);letter-spacing:.01em}
+.ident .sep{color:#3d5060}
+h1{
+  font-size:clamp(1.95rem,4.3vw,3rem);line-height:1.12;margin:0 0 16px;
+  max-width:23ch;font-weight:600;
+}
+.hero .chapo{max-width:58ch;font-size:clamp(1.02rem,1.6vw,1.12rem);color:#b6c6cf;margin:0 0 34px}
+
+/* ---------- registre de migration ---------- */
+.ledger{margin:0 0 36px;border-top:1px solid #2a3c4a;padding-top:20px}
+.ledger-tetes{display:grid;grid-template-columns:minmax(0,15.5rem) minmax(30px,1fr) minmax(0,15.5rem);gap:0 22px;
+  font-size:12.5px;letter-spacing:.06em;color:#7f97a5;margin-bottom:16px}
+.ledger-tetes .d{text-align:right}
+.ligne{display:grid;grid-template-columns:minmax(0,15.5rem) minmax(30px,1fr) minmax(0,15.5rem);gap:0 22px;align-items:center;
+  padding:9px 0}
+.ligne .de,.ligne .vers{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:14px;line-height:1.35}
+.ligne .de{color:var(--legacy-clair)}
+.ligne .vers{color:var(--cible-clair);text-align:right}
+.ligne .fleche{height:2px;border-radius:2px;
+  background:linear-gradient(90deg,var(--legacy-clair) 0%,#7f7a52 48%,var(--cible-clair) 100%);
+  opacity:.85}
+.prod{margin-top:20px;padding-top:18px;border-top:2px solid var(--cible-clair)}
+.prod p{margin:0;font-size:14.5px;color:var(--cible-clair);font-family:"Zilla Slab",Georgia,serif;font-size:16px}
+
+/* ---------- actions ---------- */
+.actions{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center}
+.btn{
+  display:inline-block;background:var(--cible-clair);color:#07231d;
+  font-family:"Zilla Slab",Georgia,serif;font-size:17px;font-weight:600;
+  padding:13px 26px;border-radius:3px;text-decoration:none;
+}
+.btn:hover{background:#6fd3ba}
+.btn:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.actions .alt{color:#b6c6cf;font-size:15px}
+.actions .alt a{color:var(--encre-clair)}
+
+/* ---------- sections ---------- */
+section{padding:62px 0 0}
+section:last-of-type{padding-bottom:70px}
+h2{font-size:clamp(1.5rem,2.6vw,1.95rem);line-height:1.2;margin:0 0 8px}
+.intro{color:var(--doux);margin:0 0 30px;max-width:60ch}
+
+/* symptômes */
+.symptomes{list-style:none;margin:0;padding:0;max-width:70ch}
+.symptomes li{padding:14px 0 14px 30px;border-top:1px solid var(--trait);position:relative}
+.symptomes li:last-child{border-bottom:1px solid var(--trait)}
+.symptomes li::before{content:"";position:absolute;left:0;top:23px;width:14px;height:2px;background:var(--legacy)}
+
+/* offres */
+.offres{border-top:2px solid var(--encre)}
+.offre{display:grid;grid-template-columns:13.5rem minmax(0,1fr);gap:6px 34px;
+  padding:26px 0;border-bottom:1px solid var(--trait)}
+.offre h3{margin:0;font-size:1.22rem;line-height:1.25}
+.offre .quoi{font-size:14px;color:var(--doux);margin-top:5px}
+.offre p{margin:0 0 10px;max-width:58ch}
+.offre .livrables{margin:0;font-size:15px;color:var(--doux)}
+.offre .livrables b{color:var(--cible);font-weight:600}
+
+/* preuve */
+.preuve{display:grid;gap:0;max-width:72ch}
+.item{display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:4px 26px;padding:20px 0;border-top:1px solid var(--trait)}
+.item:last-child{border-bottom:1px solid var(--trait)}
+.item .an{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:14px;color:var(--doux);padding-top:3px}
+.item h3{margin:0 0 4px;font-size:1.08rem}
+.item p{margin:0 0 6px}
+.item .stack{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:13px;color:var(--legacy);line-height:1.5}
+
+/* cas */
+.cas{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:34px}
+.cas > article{border-top:2px solid var(--encre);padding-top:18px;min-width:0}
+.cas h3{margin:0 0 12px;font-size:1.25rem}
+.cas dl{margin:0;display:grid;grid-template-columns:5.6rem minmax(0,1fr);gap:9px 16px;font-size:15.5px}
+.cas dt{color:var(--doux);font-size:13.5px;padding-top:2px}
+.cas dd{margin:0;min-width:0}
+.cas .stack{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:13px;color:var(--legacy);overflow-wrap:anywhere}
+
+/* honnêteté */
+.honnete{border-left:3px solid var(--legacy);padding:4px 0 4px 22px;max-width:60ch}
+.honnete p{margin:0 0 10px}
+.honnete p:last-child{margin-bottom:0}
+
+/* contact */
+.contact{background:var(--encre);color:var(--encre-clair);margin-top:70px;padding:56px 0}
+.contact h2{margin-bottom:14px}
+.contact .chapo{color:#b6c6cf;max-width:52ch;margin:0 0 30px}
+.coord{margin:34px 0 0;padding-top:22px;border-top:1px solid #2a3c4a;
+  display:flex;flex-wrap:wrap;gap:10px 30px;font-size:15px;color:#93a7b3}
+.coord a{color:var(--encre-clair)}
+footer{background:var(--encre);color:#5e7583;font-size:13.5px;padding:0 0 40px}
+
+/* liens de bas de section */
+.suite{margin-top:26px;font-size:15.5px}
+
+@media (max-width:760px){
+  body{font-size:16px}
+  .ledger-tetes,.ligne{grid-template-columns:1fr;gap:2px}
+  .ledger-tetes .d,.ligne .vers{text-align:left}
+  .ligne{padding:12px 0;border-top:1px solid #2a3c4a}
+  .ligne .fleche{height:2px;margin:7px 0;width:60px}
+  .offre,.item{grid-template-columns:1fr;gap:8px}
+  .cas dl{grid-template-columns:1fr;gap:2px 0}
+  .cas dd{margin-bottom:8px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}

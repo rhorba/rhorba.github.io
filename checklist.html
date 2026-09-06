@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>10 signes que votre application Java EE doit être modernisée</title>
+<meta name="description" content="Une checklist de dix points, chacun vérifiable en moins de dix minutes sur votre propre système Java EE, avec ce que chaque signe coûte réellement.">
+<meta property="og:title" content="10 signes que votre application Java EE doit être modernisée">
+<meta property="og:description" content="Dix points vérifiables en moins de dix minutes sur votre propre système, et ce que chacun coûte.">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="fr_FR">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23131e27'/%3E%3Crect x='6' y='14' width='9' height='3' fill='%23d99a41'/%3E%3Crect x='17' y='14' width='9' height='3' fill='%2354c1a7'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.doc{max-width:760px;margin:0 auto;padding:0 26px}
+.doc-tete{background:var(--encre);color:var(--encre-clair);padding:26px 0 40px;margin-bottom:0}
+.doc-tete h1{font-size:clamp(1.75rem,4vw,2.6rem);max-width:20ch;margin:0 0 14px}
+.doc-tete p{max-width:56ch;color:#b6c6cf;margin:0}
+.retour{font-size:14.5px;color:#93a7b3;margin:0 0 30px}
+.retour a{color:var(--encre-clair)}
+.mode{padding:34px 0 6px;color:var(--doux);max-width:60ch}
+ol.check{list-style:none;margin:26px 0 0;padding:0;counter-reset:signe}
+ol.check > li{counter-increment:signe;border-top:1px solid var(--trait);padding:22px 0 22px 3.4rem;position:relative}
+ol.check > li:last-child{border-bottom:1px solid var(--trait)}
+ol.check > li::before{
+  content:counter(signe);position:absolute;left:0;top:24px;
+  width:2.1rem;height:2.1rem;border:1.5px solid var(--encre);border-radius:2px;
+  font-family:"Zilla Slab",Georgia,serif;font-size:15px;font-weight:600;
+  display:flex;align-items:center;justify-content:center;
+}
+ol.check h2{font-size:1.16rem;line-height:1.3;margin:0 0 8px}
+ol.check p{margin:0 0 8px;max-width:60ch}
+ol.check p:last-child{margin-bottom:0}
+.test{font-size:15px;color:var(--doux);border-left:2px solid var(--legacy);padding-left:14px}
+.test b{color:var(--legacy);font-weight:600}
+ol.check .stack{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.88em;color:var(--legacy);white-space:nowrap}
+.cout{font-size:15px;color:var(--cible);font-weight:600}
+.score{margin:44px 0 0;border-top:2px solid var(--encre);padding-top:22px}
+.score h2{font-size:1.3rem;margin:0 0 14px}
+.score dl{display:grid;grid-template-columns:5.5rem 1fr;gap:10px 20px;margin:0;max-width:62ch}
+.score dt{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:14px;color:var(--doux);padding-top:3px}
+.score dd{margin:0}
+.fin{background:var(--encre);color:var(--encre-clair);margin-top:56px;padding:48px 0 44px}
+.fin h2{margin:0 0 12px}
+.fin p{color:#b6c6cf;max-width:52ch;margin:0 0 26px}
+.imprimer{margin:30px 0 0;font-size:14.5px;color:var(--doux)}
+@media print{
+  body{background:#fff;font-size:11pt}
+  .doc-tete,.fin{background:#fff;color:var(--encre);padding:0 0 18pt}
+  .doc-tete p,.fin p{color:var(--doux)}
+  .retour,.imprimer,.btn{display:none}
+  .fin{border-top:2px solid var(--encre);margin-top:24pt;padding-top:16pt}
+  .fin .rappel{display:block;font-size:11pt;color:var(--encre)}
+  ol.check > li{break-inside:avoid;padding-top:14pt;padding-bottom:14pt}
+  a{color:var(--encre);text-decoration:none}
+}
+</style>
+</head>
+<body>
+
+<header class="doc-tete">
+  <div class="doc">
+    <p class="retour"><a href="index.html">Mohamed Rhorba — Tech Lead Java</a></p>
+    <h1>10 signes que votre application Java EE doit être modernisée</h1>
+    <p>Chaque point se vérifie en moins de dix minutes, sur votre propre système, sans faire venir personne.</p>
+  </div>
+</header>
+
+<main class="doc">
+  <p class="mode">Cochez ce qui est vrai chez vous. Ce qui compte n'est pas le total, mais lesquels : certains signes coûtent un peu tous les mois, d'autres bloquent tout le reste tant qu'ils ne sont pas traités.</p>
+
+  <ol class="check">
+    <li>
+      <h2>Votre serveur d'applications n'est plus supporté</h2>
+      <p>JBoss AS 7, WildFly antérieur à la 26, Tomcat 8 : plus de correctifs, y compris de sécurité. Vos audits de conformité le verront avant vous.</p>
+      <p class="test"><b>À vérifier :</b> la version exacte du serveur en production, comparée à sa date de fin de support éditeur.</p>
+    </li>
+
+    <li>
+      <h2>Vous êtes bloqué sur Java 8 ou Java 11</h2>
+      <p>Ce n'est presque jamais Java qui bloque, mais deux ou trois dépendances abandonnées qui n'existent pas en version récente. Tant qu'elles ne sont pas remplacées, aucune montée de version n'est possible.</p>
+      <p class="test"><b>À vérifier :</b> lancez la build avec un JDK récent et notez les trois premières erreurs. Ce sont elles, le vrai sujet.</p>
+    </li>
+
+    <li>
+      <h2>Le passage de <span class="stack">javax.*</span> à <span class="stack">jakarta.*</span> n'a pas été fait</h2>
+      <p>C'est le mur. Spring Boot 3, Jakarta EE 10 et les versions récentes de la plupart des bibliothèques sont tous derrière. Tant qu'il n'est pas franchi, chaque autre modernisation est repoussée.</p>
+      <p class="test"><b>À vérifier :</b> cherchez <span class="stack">import javax.persistence</span> ou <span class="stack">javax.servlet</span> dans le code.</p>
+    </li>
+
+    <li>
+      <h2>Un déploiement n'est pas reproductible</h2>
+      <p>S'il faut une personne précise, un fichier de configuration qui n'est pas dans le dépôt et une heure creuse, ce n'est pas un déploiement : c'est un rituel. C'est aussi la première cause d'incidents en production.</p>
+      <p class="test"><b>À vérifier :</b> un développeur arrivé la semaine dernière peut-il déployer en préproduction seul, en une commande&nbsp;?</p>
+    </li>
+
+    <li>
+      <h2>La base de données n'a pas de migrations versionnées</h2>
+      <p>Pas de Flyway ni de Liquibase, des scripts SQL échangés par mail ou appliqués à la main : personne ne peut dire avec certitude si la préproduction et la production ont le même schéma.</p>
+      <p class="test"><b>À vérifier :</b> existe-t-il une table d'historique des migrations&nbsp;? Sinon, la réponse est non.</p>
+    </li>
+
+    <li>
+      <h2>Personne ne connaît la couverture de tests</h2>
+      <p>Une couverture faible est un problème gérable. Une couverture inconnue signifie que chaque modification est un pari, et c'est ce qui rend la modernisation effrayante — pas le code lui-même.</p>
+      <p class="test"><b>À vérifier :</b> la build produit-elle un rapport de couverture&nbsp;? Sa seule absence est déjà la réponse.</p>
+    </li>
+
+    <li>
+      <h2>La logique métier vit dans les pages JSF</h2>
+      <p>Des backing beans de plusieurs milliers de lignes où les règles métier, l'accès aux données et l'affichage sont mélangés. Conséquence directe : impossible d'exposer une API, d'ajouter un canal mobile ou de tester quoi que ce soit isolément.</p>
+      <p class="test"><b>À vérifier :</b> ouvrez les trois plus gros fichiers <span class="stack">*Bean.java</span>. Contiennent-ils des règles de gestion&nbsp;?</p>
+    </li>
+
+    <li>
+      <h2>Les processus BPMN n'existent que dans le moteur</h2>
+      <p>Les workflows Activiti ou jBPM tournent, mais leur définition n'est documentée nulle part et le déploiement d'une nouvelle version fait peur. Ce sont pourtant vos processus métier les plus critiques.</p>
+      <p class="test"><b>À vérifier :</b> quelqu'un peut-il expliquer, schéma à l'appui, ce que fait le processus le plus utilisé&nbsp;?</p>
+    </li>
+
+    <li>
+      <h2>Une seule personne peut intervenir sur le système</h2>
+      <p>Le risque n'est pas qu'elle parte : c'est qu'elle prenne des vacances au mauvais moment. Tant que la connaissance n'est pas sortie d'une seule tête, aucun chiffrage n'est fiable.</p>
+      <p class="test"><b>À vérifier :</b> combien de personnes ont livré un correctif en production ces six derniers mois&nbsp;?</p>
+    </li>
+
+    <li>
+      <h2>Chaque évolution métier coûte plus cher que la précédente</h2>
+      <p>C'est le signe le plus coûteux, et le plus facile à ignorer parce qu'il progresse lentement. Il finit par se payer en délais commerciaux, pas seulement en jours de développement.</p>
+      <p class="test"><b>À vérifier :</b> comparez le temps passé sur les trois dernières demandes de complexité comparable, à un an d'écart.</p>
+    </li>
+  </ol>
+
+  <div class="score">
+    <h2>Ce que votre total veut dire</h2>
+    <dl>
+      <dt>0 – 2</dt><dd>Votre système vieillit normalement. Planifiez les montées de version, ne changez rien d'autre.</dd>
+      <dt>3 – 5</dt><dd>Le coût est déjà là, réparti sur chaque demande d'évolution. C'est le moment le moins cher pour agir : vous choisissez encore le calendrier.</dd>
+      <dt>6 et plus</dt><dd>La modernisation n'est plus une décision, c'est une échéance. Commencez par les points 3, 4 et 6 — ils débloquent tous les autres.</dd>
+    </dl>
+    <p class="imprimer">Cette page s'imprime proprement (Ctrl+P) si vous voulez la passer en revue avec votre équipe.</p>
+  </div>
+</main>
+
+<section class="fin">
+  <div class="doc">
+    <h2>Vous avez coché plus de trois cases&nbsp;?</h2>
+    <p>Trente minutes en visio pour en parler. Vous décrivez le système, je vous dis par où je commencerais et ce que ça représente. Sans engagement.</p>
+    <a class="btn" href="https://cal.com/mohamed-rhorba/audit">Réserver 30 minutes</a>
+    <p class="coord">
+      <span>Mohamed Rhorba — Tech Lead Java, 13 ans sur des systèmes Java/JEE d'entreprise</span>
+      <span><a href="mailto:rrhorba.mohamed@gmail.com">rrhorba.mohamed@gmail.com</a></span>
+      <span>cal.com/mohamed-rhorba/audit</span>
+    </p>
+  </div>
+</section>
+
+</body>
+</html>
